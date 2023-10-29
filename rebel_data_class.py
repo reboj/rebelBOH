@@ -3,6 +3,7 @@
 import pandas as pd 
 import numpy as np
 import csv
+import os
 
 class rebel_data():
     def __init__(self,csv_file):
@@ -59,12 +60,23 @@ class rebel_data():
             writer = csv.DictWriter(csvfile,fieldnames=fieldnames)
             writer.writeheader()
             writer.writerow(self.data)
+        return
+    
+    def update_csv_names(self,old_name,new_name):
+        if os.path.exists(old_name):
+            os.remove(old_name)
+            os.rename(new_name,old_name)
+        else:
+            print("FILE NOT FOUND -- FAILED ACTION")
+        return
+        
 
 #<FUNCTION IMPLEMENTATION EXAMPLE>
 #boh_data = rebel_data('dataLoc.csv')
 #boh_data.add_new_area('a6',[123,123,4356])
 #boh_data.edit_area('a1',"TESTINPUT","ADD")
 #site = boh_data.search_to_locate(123)
+#print(site)
 #boh_data.upload_data_csv('dataLoc_update.csv')
 ###########################################
 
