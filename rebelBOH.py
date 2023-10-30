@@ -1,5 +1,5 @@
 ## REBEL BOH
-## I need a set function to convert og. dict values by pd.series.tolist()
+
 
 import pandas as pd
 import numpy as np
@@ -8,6 +8,10 @@ import csv
 #IMPORT CSV DATA TO PYTHON DICT
 boh_data = pd.read_csv('dataLoc.csv', index_col=False)
 boh_data = pd.DataFrame.to_dict(boh_data, orient='series')
+
+def test():
+    x = print("TEST WORKS")
+    return x
 
 def init_values(data):
     for areas, items in data.items():
@@ -67,12 +71,15 @@ def upload_data_csv(data): # --TESTED
     
 
 #MAIN LOOP
-boh_data = init_values(boh_data)
+#boh_data = init_values(boh_data)
+#print(boh_data)
 
-boh_data = add_new_area(boh_data,"a5",[3456,1234,3456])
-boh_data = edit_area(boh_data,"a1","TEST","ADD")
-area = search_to_locate(boh_data,"TEST")
+#boh_data = add_new_area(boh_data,"a5",[3456,1234,3456])
+#boh_data = edit_area(boh_data,"a1","TEST","ADD")
+#area = search_to_locate(boh_data,"TEST")
 
-upload_data_csv(boh_data)
+#print("NEW DATA")
+#upload_data_csv(boh_data)
+#print(boh_data)
 
 
