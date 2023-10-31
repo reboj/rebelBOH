@@ -68,14 +68,7 @@ class rebel_data():
         return
         
 
-#<FUNCTION IMPLEMENTATION EXAMPLE>
-#boh_data = rebel_data('dataLoc.csv')
-#boh_data.add_new_area('a6',[123,123,4356])
-#boh_data.edit_area('a1',"TESTINPUT","ADD")
-#site = boh_data.search_to_locate(123)
-#print(site)
-#boh_data.upload_data_csv('dataLoc_update.csv')
-###########################################
+
 
 
 

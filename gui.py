@@ -16,6 +16,10 @@ def search_window(boh_data,state):
             break
         elif scan_var =="exit":
             state = scan_var
+            print("---Updating Data -- Please wait.---")
+            boh_data.upload_data_csv('dataLoc_update.csv')
+            boh_data.update_csv_names('dataLoc.csv','dataLoc_update.csv')
+            print("===Update completed===")
             break
     return state
 
