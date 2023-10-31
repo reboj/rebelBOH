@@ -3,6 +3,7 @@ from rebel_data_class import rebel_data
 ##INITIALISE
 boh_data = rebel_data('dataLoc.csv')
 
+
 ##1st WINDOW -- SEARCH MODE
 def search_window(boh_data,state):
     while state == "search":    
@@ -24,7 +25,7 @@ def modify_window(boh_data,state):
     new_area_list = []
     while state == "modify":      
         print("--- MODIFY MODE---")
-        scan_var = input("Available actions:\n->Add new area\n->Add item in\n->Sub item out\n->Clear area\n->X item\n->search\n->exit\nSelect Action: \n")
+        scan_var = input("Available actions:\n*Add new area\n*Add item in\n*Sub item out\n*Clear area\n*X item in area\n*search\n*exit\nSelect Action: ")
         if scan_var == "Add new area":  #ADD NEW AREA FUNCTION
             area_name = input("Area name: ")
             confirm = input("Area name: {}. Confirm with yes or no: ".format(area_name))
@@ -71,7 +72,7 @@ def modify_window(boh_data,state):
             confirm = input("Area: {}. Confirm with yes or no: ".format(area_name))
             if confirm == "yes":
                 bar_scan = bar_scan = input('Scan now: ')
-                confirm_all = input("Confirm to clear all with yes or no: ")
+                confirm_all = input("Confirm to clear all item with matching barcode with yes or no: ")
                 if confirm_all == 'yes':
                     boh_data.edit_area(area_name,bar_scan,"X")
                     print("CLEAR all items at {}".format(area_name))
@@ -96,8 +97,10 @@ def main():
     state = 'search'
     print("OPENING -----\n-------\n----------\n-----------------\n")
     while state == 'search':
+        print(boh_data.data)
         state = search_window(boh_data,state)
         if state == 'modify':
+            print(boh_data.data)
             state = modify_window(boh_data,state)
         if state == 'exit':
             print("CLOSING ---------------------\n----------------n------")
@@ -105,55 +108,8 @@ def main():
 ## RUNNING MAIN LOOP
 main()
 
-        
-
-
-
-
-
-                
-
-
-        
-                    
-
-            
-                
-
-
-
-
-            
-
-                
-            
-
-
-
-
-
-
-
-
-        
 
 
 
     
-
-    
-
-
-
-
-
-#<FUNCTION IMPLEMENTATION EXAMPLE>
-
-boh_data.add_new_area('a6',[123,123,4356])
-boh_data.edit_area('a1',"NEWESTINPUT3","CLEAR")
-site = boh_data.search_to_locate("NEWESTINPUT3")
-print(site)
-#boh_data.upload_data_csv('dataLoc_update.csv')
-#boh_data.update_csv_names('dataLoc.csv','dataLoc_update.csv')
-
 

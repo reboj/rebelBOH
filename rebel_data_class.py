@@ -1,18 +1,13 @@
 #RebelBOH class
-
-import pandas as pd 
-import numpy as np
+import pickle 
 import csv
 import os
 
 class rebel_data():
     def __init__(self,csv_file):
-        self.data = pd.read_csv(csv_file,index_col=False)
-        self.data = pd.DataFrame.to_dict(self.data, orient='series')
-        for areas, items in self.data.items():
-            value_list = pd.Series.to_list(self.data.get(areas))
-            self.data[areas] = value_list
-    
+        with open("bohData.pkl","rb") as d_file:
+            self.data = pickle.load(d_file)
+            
     def add_new_area(self, area_name,items_list):
         self.data.update({area_name:items_list})    
         return 
@@ -60,6 +55,8 @@ class rebel_data():
             writer = csv.DictWriter(csvfile,fieldnames=fieldnames)
             writer.writeheader()
             writer.writerow(self.data)
+        with open ("bohData.pkl","wb") as s_file:
+            pickle.dump(self.data,s_file)
         return
     
     def update_csv_names(self,old_name,new_name):
