@@ -3,7 +3,7 @@ Back-Of-House(BOH) database app
 
 **Project Overview**
 Creation of BOH database app to quickly and accurately locate stored products at BOH. 
-The app's database is built upon Python for faster and scalable approach as database gets larger. With Kviy GUI for better user interaction. 
+The app's database is built upon Python for faster and scalable approach as database gets larger. 
 
 
 **App Overview**
@@ -21,10 +21,11 @@ The app's database is built upon Python for faster and scalable approach as data
   Functions:
   -> Allows end users to record or place notes for communication to others.
 
-**Identifible steps for completion.**
-1.) Identify system requirments and shareholders involved. 
-2.) Assess existing libraries:
-    * Numpy, Pyspark, Pandas, Python
+* FEEDBACK as of Nov 6, 2023
+-> Running terminal/command prompt interface could lead to confusion to other team members -- Yoong, Josh, Jenn.
+-> Code needs to be more resilant with wrong inputs -- Rebo, Jenn.
+-> Opening the 'app' through command prompt could be more accessible. -- Rebo
+-> How to tell if an area exist already. -- Jason, Tamara 
 
   
 
