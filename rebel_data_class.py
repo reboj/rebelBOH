@@ -1,10 +1,9 @@
 #RebelBOH class
 import pickle 
-import csv
-import os
+
 
 class rebel_data():
-    def __init__(self,csv_file):
+    def __init__(self):
         with open("bohData.pkl","rb") as d_file:
             self.data = pickle.load(d_file)
             
@@ -40,6 +39,7 @@ class rebel_data():
     # SEARCH SCANNED ITEM IN DATABASE -- TESTED     
     def search_to_locate(self,scanned_item):
         scan_condition = False
+        scan_fail = 'NO MATCH IN DATABASE'
         for areas, items in self.data.items():
             for item in items:
                 if item == scanned_item:
@@ -47,25 +47,14 @@ class rebel_data():
                     return areas
     
         if scan_condition == False:
-            return print("NO MATCH")
+            return scan_fail
 
-    def upload_data_csv(self,new_csv_file): # --TESTED
-        fieldnames = self.data.keys()
-        with open(new_csv_file,'w') as csvfile:
-            writer = csv.DictWriter(csvfile,fieldnames=fieldnames)
-            writer.writeheader()
-            writer.writerow(self.data)
+    def upload_data(self): # --TESTED
         with open ("bohData.pkl","wb") as s_file:
             pickle.dump(self.data,s_file)
         return
+
     
-    def update_csv_names(self,old_name,new_name):
-        if os.path.exists(old_name):
-            os.remove(old_name)
-            os.rename(new_name,old_name)
-        else:
-            print("FILE NOT FOUND -- FAILED ACTION")
-        return
         
 
 

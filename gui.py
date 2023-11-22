@@ -1,8 +1,7 @@
 from rebel_data_class import rebel_data
 
 ##INITIALISE
-boh_data = rebel_data('dataLoc.csv')
-
+boh_data = rebel_data()
 
 ##1st WINDOW -- SEARCH MODE
 def search_window(boh_data,state):
@@ -17,8 +16,7 @@ def search_window(boh_data,state):
         elif scan_var =="exit":
             state = scan_var
             print("---Updating Data -- Please wait.---")
-            boh_data.upload_data_csv('dataLoc_update.csv')
-            boh_data.update_csv_names('dataLoc.csv','dataLoc_update.csv')
+            boh_data.upload_data()
             print("===Update completed===")
             break
     return state
@@ -83,8 +81,7 @@ def modify_window(boh_data,state):
         if scan_var == "search":
             state = scan_var
             print("---Updating Data -- Please wait.---")
-            boh_data.upload_data_csv('dataLoc_update.csv')
-            boh_data.update_csv_names('dataLoc.csv','dataLoc_update.csv')
+            boh_data.upload_data()
             print("===Update completed===\n")
             return state
         if scan_var != 'Add new area' or 'Add item in' or "Sub item out" or 'Clear area' or "X item" or "search":
@@ -92,8 +89,7 @@ def modify_window(boh_data,state):
         if scan_var == "exit":
             state = scan_var
             print("---Updating Data -- Please wait.---")
-            boh_data.upload_data_csv('dataLoc_update.csv')
-            boh_data.update_csv_names('dataLoc.csv','dataLoc_update.csv')
+            boh_data.upload_data()
             print("===Update completed===")
             return state
 
