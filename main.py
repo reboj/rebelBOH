@@ -5,13 +5,7 @@ from rebel_data_class import rebel_data
 
 #Initialize
 boh_data = rebel_data()
-
-#Functions
-def modify_mode():
-    main_label.configure(text="--- Modify Mode ---")
-    modify_text = 'Scan/type the available actions:\n*Add new area\n*Add item in\n*Sub item out\n*Clear Area\n*X item\n*search\n*exit'
-    info_label.configure(text=modify_text)
-    return
+ctk.set_appearance_mode("dark")
 
 def search_mode(event):
     if scanned_var.get() == 'modify':
@@ -22,27 +16,29 @@ def search_mode(event):
 
 
 #Window -- BASE
-window = ctk.CTk()
-window.title("rebelBOH RHTC")
-window.geometry("1300x1200")
-ctk.set_appearance_mode("dark")
+search_window = ctk.CTk()
+search_window.title("rebelBOH RHTC")
+search_window.geometry("1300x1200")
+
 #Widgets
-main_label = ctk.CTkLabel(window, text="--- Search Mode ---",font=('calibri',60))
+main_label = ctk.CTkLabel(search_window, text="--- Search Mode ---",font=('calibri',60))
 main_label.pack(pady=100)
 
-info_text = 'Scan barcode to search for its area if it exist.\nAccess SAP for barcode(GTIN) if needed be.\nTo go to Modify mode; scan/type: modify.'
-info_label = ctk.CTkLabel(window, text=info_text, font=('ariel',40))
-info_label.pack()
+search_info_text = 'Scan barcode to search for its area if it exist.\nAccess SAP for barcode(GTIN) if needed be.\nTo go to Modify mode; scan/type: modify.'
+search_info = ctk.CTkLabel(search_window, text=search_info_text, font=('ariel',40))
+search_info.pack()
 
 scanned_var = tk.StringVar()
-search_bar = ctk.CTkEntry(window,textvariable=scanned_var,width=800,height=50,font=('ariel',30))
+search_bar = ctk.CTkEntry(search_window,textvariable=scanned_var,width=800,height=50,font=('ariel',30))
 search_bar.bind('<Return>',search_mode)
 search_bar.pack(pady=80)
 search_bar.focus()
 
 output_var = tk.StringVar()
-output_label = ctk.CTkEntry(window, textvariable=output_var, font=('ariel',100),width=985,fg_color='transparent')
+output_label = ctk.CTkLabel(search_window, textvariable=output_var, font=('ariel',100),width=985,fg_color='transparent')
 output_label.pack(pady=50)
 
 #Main Loop
-window.mainloop()
+search_window.mainloop()
+
+

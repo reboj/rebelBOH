@@ -35,7 +35,7 @@ class rebel_data():
 
         return 
 
-
+ 
     # SEARCH SCANNED ITEM IN DATABASE -- TESTED     
     def search_to_locate(self,scanned_item):
         scan_condition = False
