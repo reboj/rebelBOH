@@ -15,9 +15,10 @@ class gui(ctk.CTk):
         self.geometry('1300x1200')
         self.main_label_text = ''
         self.main_label = ctk.CTkLabel(self, text=self.main_label_text,font=('calibri',60))
-        self.main_label.pack()
+        
 
 #Main Loop
 window = gui()
 window.main_label.configure("Main Label")
+window.main_label.pack()
 window.mainloop()

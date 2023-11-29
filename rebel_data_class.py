@@ -38,17 +38,18 @@ class rebel_data():
  
     # SEARCH SCANNED ITEM IN DATABASE -- TESTED     
     def search_to_locate(self,scanned_item):
+        area_list = {}
         scan_condition = False
-        scan_fail = 'NO MATCH IN DATABASE'
         for areas, items in self.data.items():
             for item in items:
                 if item == scanned_item:
+                    if areas in area_list:
+                        area_list[areas] += 1
+                    else:
+                        area_list[areas] = 1
                     scan_condition = True
-                    return areas
+        return area_list
     
-        if scan_condition == False:
-            return scan_fail
-
     def upload_data(self): # --TESTED
         with open ("bohData.pkl","wb") as s_file:
             pickle.dump(self.data,s_file)
