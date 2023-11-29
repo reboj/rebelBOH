@@ -50,7 +50,8 @@ def modify_window(boh_data,state):
             print("-ADD NEW AREA-")  
             area_name = input("\nNew area name?: ")
             confirm = input("Area name: {}. Confirm with yes or no: ".format(area_name))
-            if confirm == "yes":
+            check = boh_data.if_area_exist(area_name)
+            if confirm == "yes" and check == False:
                 os.system('cls||clear') 
                 print("-ADD NEW AREA-")
                 new_area_list = []
@@ -60,14 +61,17 @@ def modify_window(boh_data,state):
                     if bar_scan == "finish":
                         break
                     new_area_list.append(bar_scan)
-                    boh_data.add_new_area(area_name,new_area_list)
+                    outcome = boh_data.add_new_area(area_name,new_area_list)
                 print("\nCOMPLETED. NEW AREA AVAILABLE\n")
+            if check == True and confirm == 'yes':
+                print("\nArea already exist in database. Try Add item in.\n")
         if scan_var == "Add item in":   #ADD ITEM IN FUNCTION
             os.system('cls||clear')
             print("-ADD ITEM IN-")
             area_name = input("\nWhat area?: ")
             confirm = input("\nArea: {}. Confirm with yes or no: ".format(area_name))
-            if confirm =="yes":
+            check = boh_data.if_area_exist(area_name)
+            if confirm =="yes" and check == True:
                 os.system('cls||clear')
                 print("-ADD ITEM IN-")  
                 new_area_list = []
@@ -78,12 +82,15 @@ def modify_window(boh_data,state):
                         break
                     boh_data.edit_area(area_name,bar_scan,"ADD")
                 print("\nItem/s added in {}".format(area_name))
+            if check == False and confirm == 'yes':
+                print("\nNo area exist in database. Double Check area or Add new area.\n")
         if scan_var == "Sub item out":  #SUB ITEM OUT FUNCTION
             os.system('cls||clear')
             print("-SUB ITEM OUT-")  
             area_name = input("\nWhat area?: ")
             confirm = input("\nArea: {}. Confirm with yes or no: ".format(area_name))
-            if confirm =="yes":
+            check = boh_data.if_area_exist(area_name)
+            if confirm =="yes" and check == True:
                 os.system('cls||clear')
                 print("-SUB ITEM OUT-")  
                 new_area_list = []
@@ -94,20 +101,26 @@ def modify_window(boh_data,state):
                         break
                     boh_data.edit_area(area_name,bar_scan,"SUB")
                 print("\nItem/s subbed out of {}".format(area_name))
+            if check == False and confirm == 'yes':
+                print("\nNo Area exit in database. Double Check area.\n")
         if scan_var == "Clear area":
             os.system('cls||clear')  
             area_name = input("\nWhat area to clear?:")
             confirm = input("\nArea to clear: {}. Confirm with yes or no: ".format(area_name))
-            if confirm =="yes":
+            check = boh_data.if_area_exist(area_name)
+            if confirm =="yes" and check == True:
                 placeHolder = 0
                 boh_data.edit_area(area_name, placeHolder,"CLEAR")
                 print("\nCLEARED all items in area: {}".format(area_name))
+            if check == False and confirm == 'yes':
+                print("\nNo Area exit in database. Double Check area.\n")
         if scan_var == "X item":
             os.system('cls||clear')
             print("-X ITEM-")  
             area_name = input("\nWhat area?: ")
             confirm = input("\nArea: {}. Confirm with yes or no: ".format(area_name))
-            if confirm == "yes":
+            check = boh_data.if_area_exist(area_name)
+            if confirm == "yes" and check == True:
                 os.system('cls||clear')
                 print("-X ITEM-")  
                 bar_scan = bar_scan = input('Scan now: ')
@@ -115,6 +128,8 @@ def modify_window(boh_data,state):
                 if confirm_all == 'yes':
                     boh_data.edit_area(area_name,bar_scan,"X")
                     print("\nCLEARED all identical barcode in area: {}".format(area_name))
+            if check == False and confirm == 'yes':
+                print("\nNo Area exit in database. Double Check area.\n")
         if scan_var == "search":
             state = scan_var
             print("\n---Updating Data --- Please wait.---\n")
@@ -137,7 +152,7 @@ def main():
         #print(boh_data.data)
         state = search_window(boh_data,state)
         if state == 'modify':
-            print(boh_data.data)
+            #print(boh_data.data)
             state = modify_window(boh_data,state)
         if state == 'exit':
             print(" \t--------------CLOSING ----------------\n")

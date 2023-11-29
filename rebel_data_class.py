@@ -1,15 +1,21 @@
 #RebelBOH class
-import pickle 
+import pickle
 
 
 class rebel_data():
     def __init__(self):
         with open("bohData.pkl","rb") as d_file:
             self.data = pickle.load(d_file)
-            
+
+    def if_area_exist(self,area_name):
+        if area_name in self.data.keys():
+            return True
+        else:
+            return False
+        
     def add_new_area(self, area_name,items_list):
-        self.data.update({area_name:items_list})    
-        return 
+        self.data.update({area_name:items_list})
+        return True
     
     def edit_area(self, area_name,scanned_item,action):
         items_inside = self.data.get(area_name)
@@ -19,9 +25,17 @@ class rebel_data():
         if action == 'ADD':   #ADD ITEM --TESTED
             items_inside.append(scanned_item)
             self.data[area_name] = items_inside
-        elif action == 'SUB':     #SUB ITEM --TESTED
-            items_inside.remove(scanned_item)
-            self.data[area_name] = items_inside
+
+        elif action == 'SUB':
+            for item in items_inside:
+                count = items_inside.count(scanned_item)
+            print('No. of scanned item in this area: {}'.format(count))
+            if count >= 1 and scanned_item in items_inside:
+                items_inside.remove(scanned_item)
+                self.data[area_name] = items_inside
+            else:
+                print("\nNo more scanned items in this area. Proceeding to next step.\n")
+
         elif action == 'CLEAR':     #CLEARS AREA --TESTED
             items_inside = []
             self.data[area_name] = items_inside
