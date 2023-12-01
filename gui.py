@@ -83,7 +83,7 @@ def modify_window(boh_data,state):
                     boh_data.edit_area(area_name,bar_scan,"ADD")
                 print("\n Item/s added in {}".format(area_name))
             if check == False and confirm == 'yes':
-                print("\n No area exist in database. Double Check area or Add new area.\n")
+                print("\n No area exist in database. Double check area or add new area.\n")
         if scan_var == "Sub item out":  #SUB ITEM OUT FUNCTION
             os.system('cls||clear')
             print("\n ----------SUB ITEM OUT IN AREA-----------")  
@@ -102,7 +102,7 @@ def modify_window(boh_data,state):
                     boh_data.edit_area(area_name,bar_scan,"SUB")
                 print("\n Item/s subbed out of {}".format(area_name))
             if check == False and confirm == 'yes':
-                print("\n No Area exit in database. Double Check area.\n")
+                print("\n No Area exit in database. Double check area.\n")
         if scan_var == "Clear area":
             os.system('cls||clear')
             print("\n ----------CLEAR AREA-----------")  
@@ -114,7 +114,7 @@ def modify_window(boh_data,state):
                 boh_data.edit_area(area_name, placeHolder,"CLEAR")
                 print("\n CLEARED all items in area: {}".format(area_name))
             if check == False and confirm == 'yes':
-                print("\n No Area exit in database. Double Check area.\n")
+                print("\n No Area exit in database. Double check area.\n")
         if scan_var == "X item":
             os.system('cls||clear')
             print("\n ---------- X ITEM OUT IN AREA-----------")    
@@ -130,7 +130,7 @@ def modify_window(boh_data,state):
                     boh_data.edit_area(area_name,bar_scan,"X")
                     print("\n CLEARED all identical barcode in area: {}".format(area_name))
             if check == False and confirm == 'yes':
-                print("\n No Area exit in database. Double Check area.\n")
+                print("\n No Area exit in database. Double check area.\n")
         if scan_var == "search":
             state = scan_var
             print("\n---Updating Data --- Please wait.---\n")

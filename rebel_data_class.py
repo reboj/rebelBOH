@@ -21,6 +21,7 @@ class rebel_data():
         items_inside = self.data.get(area_name)
         items_count = len(items_inside)
         new_list = []
+        count = 0
 
         if action == 'ADD':   #ADD ITEM --TESTED
             items_inside.append(scanned_item)
@@ -28,13 +29,16 @@ class rebel_data():
 
         elif action == 'SUB':
             for item in items_inside:
-                count = items_inside.count(scanned_item)
-            print('No. of scanned item in this area: {}'.format(count))
-            if count >= 1 and scanned_item in items_inside:
+                if scanned_item in items_inside:
+                    count = items_inside.count(scanned_item)
+            if count >= 1:
                 items_inside.remove(scanned_item)
                 self.data[area_name] = items_inside
+                if count >= 0:
+                    count = count - 1
+                print('New QTY: {}'.format(count))
             else:
-                print("\nNo more scanned items in this area. Proceeding to next step.\n")
+                print("\nScanned item QTY: 0 in this area.\n")  
 
         elif action == 'CLEAR':     #CLEARS AREA --TESTED
             items_inside = []
