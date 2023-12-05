@@ -1,4 +1,6 @@
 from rebel_data_class import rebel_data
+from pdfgen import print_barcode
+from pdfgen import custom_print_barcodes
 import os
 
 
@@ -44,7 +46,8 @@ def modify_window(boh_data,state):
     while state == "modify":
         os.system('cls||clear')      
         print("\n -------------------- MODIFY MODE ---------------------\n")
-        scan_var = input(" Available actions:\n -Add new area\n -Add item in\n -Sub item out\n -Clear area\n -X item in area\n -search\n -exit\n\n Select Action: ")
+        scan_var = input(" Available actions:\n\n ~ Add new area\n ~ Add item in\n ~ Sub item out\n ~ Clear area\n ~ X item\n\n ~ Custom print areas\n ~ search\n ~ exit\n\n Select Action: ")
+
         if scan_var == "Add new area":  #ADD NEW AREA FUNCTION
             os.system('cls||clear')
             print("\n ----------ADD NEW AREA-----------")  
@@ -62,9 +65,11 @@ def modify_window(boh_data,state):
                         break
                     new_area_list.append(bar_scan)
                     outcome = boh_data.add_new_area(area_name,new_area_list)
-                print("\n COMPLETED. NEW AREA AVAILABLE\n")
+                print_barcode(area_name)
+                print("\n COMPLETED. NEW AREA AVAILABLE.")
             if check == True and confirm == 'yes':
                 print("\n Area already exist in database. Try Add item in.\n")
+
         if scan_var == "Add item in":   #ADD ITEM IN FUNCTION
             os.system('cls||clear')
             print("\n ----------ADD ITEM IN AREA-----------")  
@@ -84,6 +89,7 @@ def modify_window(boh_data,state):
                 print("\n Item/s added in {}".format(area_name))
             if check == False and confirm == 'yes':
                 print("\n No area exist in database. Double check area or add new area.\n")
+
         if scan_var == "Sub item out":  #SUB ITEM OUT FUNCTION
             os.system('cls||clear')
             print("\n ----------SUB ITEM OUT IN AREA-----------")  
@@ -103,6 +109,7 @@ def modify_window(boh_data,state):
                 print("\n Item/s subbed out of {}".format(area_name))
             if check == False and confirm == 'yes':
                 print("\n No Area exit in database. Double check area.\n")
+
         if scan_var == "Clear area":
             os.system('cls||clear')
             print("\n ----------CLEAR AREA-----------")  
@@ -115,6 +122,7 @@ def modify_window(boh_data,state):
                 print("\n CLEARED all items in area: {}".format(area_name))
             if check == False and confirm == 'yes':
                 print("\n No Area exit in database. Double check area.\n")
+
         if scan_var == "X item":
             os.system('cls||clear')
             print("\n ---------- X ITEM OUT IN AREA-----------")    
@@ -131,14 +139,33 @@ def modify_window(boh_data,state):
                     print("\n CLEARED all identical barcode in area: {}".format(area_name))
             if check == False and confirm == 'yes':
                 print("\n No Area exit in database. Double check area.\n")
+
+        if scan_var == "Custom print areas":
+            custom_print = {}
+            while user == 1:
+                os.system('cls||clear')
+                print("\n ---------- Custom Print Areas -----------\n")
+                print("\n When finished. Scan/type: finish\n")
+                area = input(" Area Name: ")
+                qty = input(" Qty: ")
+                confirm = input(" {}-{}. Confirm print with yes or no. When finished, scan/type finish: ".format(area,qty))
+                if confirm == 'yes':
+                    custom_print[area] = int(qty)
+                if confirm == 'finish':
+                    if len(custom_print) > 0:
+                        custom_print_barcodes(custom_print)
+                    break
+
         if scan_var == "search":
             state = scan_var
             print("\n---Updating Data --- Please wait.---\n")
             boh_data.upload_data()
             print("----------Update completed------------\n")
             return state
+
         if scan_var != 'Add new area' or 'Add item in' or "Sub item out" or 'Clear area' or "X item" or "search" or "exit":
-            input(" Press enter/scan any barcode to continue\n")
+            input(" Press enter/scan any barcode to continue.\n")
+
         if scan_var == "exit":
             state = scan_var
             print("\n \t---Updating Data --- Please wait.---")
