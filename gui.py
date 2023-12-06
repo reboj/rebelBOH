@@ -13,7 +13,12 @@ def search_window(boh_data,state):
     while state == "search":
         results = [] 
         print("\n -------------------- SEARCH MODE ---------------------\n")
-        print(' Scan barcode to search for its area if it exist.\n Access SAP for barcode(GTIN) if needed be.\n Need to use right click of mouse to paste barcode.\n To go to Modify mode; scan/type: modify.') 
+        text_01 = ' Scan barcode to search for its area if it exist.\n'
+        text_02 = ' Access SAP for barcode(GTIN) if needed be.\n'
+        text_03 = ' Need to use right click of mouse to paste barcode.\n'
+        text_04 = ' To go to Modify mode; scan/type: modify.'
+        print( text_01 + text_02 + text_03 + text_04) 
+
         scan_var = input('\n Scan barcode: ')
         print('')
         areas = boh_data.search_to_locate(scan_var)
@@ -46,7 +51,16 @@ def modify_window(boh_data,state):
     while state == "modify":
         os.system('cls||clear')      
         print("\n -------------------- MODIFY MODE ---------------------\n")
-        scan_var = input(" Available actions:\n\n ~ Add new area\n ~ Add item in\n ~ Sub item out\n ~ Clear area\n ~ X item\n\n ~ Custom print areas\n ~ search\n ~ exit\n\n Select Action: ")
+        text_01 = ' Available Actions:\n\n'
+        input_01 = ' ~ Add new area\n'
+        input_02 = ' ~ Sub item out\n'
+        input_03 = ' ~ Clear area\n'
+        input_04 = ' ~ X item\n\n'
+        input_05 = ' ~ Custom print areas\n'
+        input_06 = ' ~ search\n'
+        input_07 = ' ~ exit\n\n'
+        text_02 = ' Select Action: '
+        scan_var = input(text_01 + input_01 + input_02 + input_03 + input_04 + input_05 + input_06 + input_07 + text_02)
 
         if scan_var == "Add new area":  #ADD NEW AREA FUNCTION
             os.system('cls||clear')
@@ -145,10 +159,12 @@ def modify_window(boh_data,state):
             while user == 1:
                 os.system('cls||clear')
                 print("\n ---------- Custom Print Areas -----------\n")
-                print("\n When finished. Scan/type: finish\n")
+                print("\n When finished. Scan/type: finish at confirm print.\n")
                 area = input(" Area Name: ")
                 qty = input(" Qty: ")
-                confirm = input(" {}-{}. Confirm print with yes or no. When finished, scan/type finish: ".format(area,qty))
+                print("\n {}-{}. Confirm with yes to print, no to retry.".format(area,qty))
+                print(" If finished, scan/type finish. (Confirm yes first, to add the above inputs for printing.)")
+                confirm = input("\n Action (yes/no/finish): ")
                 if confirm == 'yes':
                     custom_print[area] = int(qty)
                 if confirm == 'finish':
@@ -186,7 +202,8 @@ def main():
             print(" \t--------------CLOSING ----------------\n")
             return
 ## RUNNING MAIN LOOP
-main()
+if __name__ == '__main__':
+    main()  
 
 
 
