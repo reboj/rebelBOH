@@ -3,7 +3,7 @@ from barcode.writer import ImageWriter
 # DOCS -- options: https://python-barcode.readthedocs.io/en/stable/writers.html#common-writer-options
 
 
-texts = ['A-21']
+texts = ['Custom print areas']
 options = {'module_width':0.2,
             'module_height':10.0,
             'quiet_zone':20.0,
