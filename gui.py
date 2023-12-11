@@ -52,7 +52,8 @@ def modify_window(boh_data,state):
         os.system('cls||clear')      
         print("\n -------------------- MODIFY MODE ---------------------\n")
         text_01 = ' Available Actions:\n\n'
-        input_01 = ' ~ Add new area\n'
+        input_00 = ' ~ Add new area\n'
+        input_01 = ' ~ Add item in\n'
         input_02 = ' ~ Sub item out\n'
         input_03 = ' ~ Clear area\n'
         input_04 = ' ~ X item\n\n'
@@ -60,7 +61,7 @@ def modify_window(boh_data,state):
         input_06 = ' ~ search\n'
         input_07 = ' ~ exit\n\n'
         text_02 = ' Select Action: '
-        scan_var = input(text_01 + input_01 + input_02 + input_03 + input_04 + input_05 + input_06 + input_07 + text_02)
+        scan_var = input(text_01 + input_00 +input_01 + input_02 + input_03 + input_04 + input_05 + input_06 + input_07 + text_02)
 
         if scan_var == "Add new area":  #ADD NEW AREA FUNCTION
             os.system('cls||clear')
