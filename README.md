@@ -5,6 +5,12 @@ Back-Of-House(BOH) database app
 Creation of BOH database app to quickly and accurately locate stored products at BOH. 
 The app's database is built upon Python for faster and scalable approach as database gets larger. 
 
+The store is partitioned into different areas like stocktake. By adding new areas into the app’s database with its respective items, 
+the app’s search window will be able to search the scanned barcode and call out its respective areas alongside the item’s quantity. 
+While the modify window will allow users to modify the app’s database to reflect current stock locations. 
+
+The app is designed to be used single-handedly with a barcode scanner for the intentions of efficient workflow. Every action needed to operate the app will have its own barcode thereby users are to follow the prompts displayed on the app’s interface and simply scan the barcode of the desired action. Moreover, typing the inputs can be done by users however users need to be cautious of white spaces and capital letters when typing. The correct typography for typed inputs is displayed on the app’s interface.
+
 
 **App Overview**
 * 'Search/Locate' tab. 
