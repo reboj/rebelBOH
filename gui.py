@@ -14,7 +14,7 @@ def search_window(boh_data,state):
         results = [] 
         print("\n -------------------- SEARCH MODE ---------------------\n")
         text_01 = ' Scan barcode to search for its area if it exist.\n'
-        text_02 = ' Access SAP for barcode(GTIN) if needed be.\n'
+        text_02 = ' Access SAP for barcode(EAN) if needed be.\n'
         text_03 = ' Need to use right click of mouse to paste barcode.\n'
         text_04 = ' To go to Modify mode; scan/type: modify.'
         print( text_01 + text_02 + text_03 + text_04) 
@@ -160,7 +160,7 @@ def modify_window(boh_data,state):
             while user == 1:
                 os.system('cls||clear')
                 print("\n ---------- Custom Print Areas -----------\n")
-                print("\n When finished. Scan/type: finish at confirm print.\n")
+                print("\n When finished. Scan/type: finish at Action.\n")
                 area = input(" Area Name: ")
                 qty = input(" Qty: ")
                 print("\n {}-{}. Confirm with yes to print, no to retry.".format(area,qty))
@@ -189,6 +189,11 @@ def modify_window(boh_data,state):
             boh_data.upload_data()
             print(" \t----------Update completed-----------")
             return state
+        
+        boh_data.upload_data()
+        
+        
+
 
 def main():
     state = 'search'
