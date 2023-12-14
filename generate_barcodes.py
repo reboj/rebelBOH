@@ -7,8 +7,8 @@ texts = ['Custom print areas']
 options = {'module_width':0.2,
             'module_height':10.0,
             'quiet_zone':20.0,
-            'font_size':30,
-            'text_distance':14.0
+            'font_size':14,
+            'text_distance':30.0
            }
 barcode_folder = 'barcodes/'  
 

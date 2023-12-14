@@ -74,8 +74,6 @@ class rebel_data():
         return
 
 
-        
-
 
 
 
