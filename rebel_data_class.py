@@ -38,7 +38,7 @@ class rebel_data():
                     count = count - 1
                 print(' New QTY: {}'.format(count))
             else:
-                print(" Scanned item QTY: 0 in this area.\n")  
+                print(" QTY: 0 in this area.\n")  
 
         elif action == 'CLEAR':     #CLEARS AREA --TESTED
             items_inside = []
@@ -72,6 +72,20 @@ class rebel_data():
         with open ("bohData.pkl","wb") as s_file:
             pickle.dump(self.data,s_file)
         return
+    
+    def items_count(self,area_name):
+        items_inside = self.data.get(area_name)
+        items_count = len(items_inside)
+        return items_count
+    
+    def items_in(self,area_name,bar_scan):
+        count = 0
+        items_inside = self.data.get(area_name)
+        for item in items_inside:
+            if bar_scan == item:
+                count = count + 1
+        return count
+
 
 
 

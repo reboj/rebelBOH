@@ -15,9 +15,8 @@ def search_window(boh_data,state):
         print("\n -------------------- SEARCH MODE ---------------------\n")
         text_01 = ' Scan barcode to search for its area if it exist.\n'
         text_02 = ' Access SAP for barcode(EAN) if needed be.\n'
-        text_03 = ' Need to use right click of mouse to paste barcode.\n'
-        text_04 = ' To go to Modify mode; scan/type: modify.'
-        print( text_01 + text_02 + text_03 + text_04) 
+        text_03 = ' To go to Modify mode; scan/type: modify.'
+        print( text_01 + text_02 + text_03) 
 
         scan_var = input('\n Scan barcode: ')
         print('')
@@ -67,7 +66,7 @@ def modify_window(boh_data,state):
             os.system('cls||clear')
             print("\n ----------ADD NEW AREA-----------")  
             area_name = input("\n New area name?: ")
-            confirm = input(" Area name: {}. Confirm with yes or no: ".format(area_name))
+            confirm = input(" Area name: {}.\n Confirm with yes or no: ".format(area_name))
             check = boh_data.if_area_exist(area_name)
             if confirm == "yes" and check == False:
                 os.system('cls||clear') 
@@ -89,13 +88,16 @@ def modify_window(boh_data,state):
             os.system('cls||clear')
             print("\n ----------ADD ITEM IN AREA-----------")  
             area_name = input("\n What area?: ")
-            confirm = input("\n Area: {}. Confirm with yes or no: ".format(area_name))
+            confirm = input("\n Area: {}.\n Confirm with yes or no: ".format(area_name))
             check = boh_data.if_area_exist(area_name)
             if confirm =="yes" and check == True:
                 os.system('cls||clear')
-                print("\n ----------ADD ITEM IN AREA-----------")  
+                print("\n ----------ADD ITEM IN AREA-----------")
+                if boh_data.items_count(area_name) <= 0:
+                    print('\n ~ Area clear. No items inside ~')
+                else: print('\n ~ Existing items inside {} ~'.format(area_name))    
                 new_area_list = []
-                print("\n When Finished. Type/Scan:finish\n")
+                print(" When Finished. Type/Scan:finish\n")
                 while user == 1:
                     bar_scan = input(' Scan now: ')
                     if bar_scan == 'finish':
@@ -109,7 +111,7 @@ def modify_window(boh_data,state):
             os.system('cls||clear')
             print("\n ----------SUB ITEM OUT IN AREA-----------")  
             area_name = input("\nWhat area?: ")
-            confirm = input("\nArea: {}. Confirm with yes or no: ".format(area_name))
+            confirm = input("\nArea: {}.\nConfirm with yes or no: ".format(area_name))
             check = boh_data.if_area_exist(area_name)
             if confirm =="yes" and check == True:
                 os.system('cls||clear')
@@ -129,7 +131,9 @@ def modify_window(boh_data,state):
             os.system('cls||clear')
             print("\n ----------CLEAR AREA-----------")  
             area_name = input("\n What area to clear?:")
-            confirm = input("\n Area to clear: {}. Confirm with yes or no: ".format(area_name))
+            area_count = boh_data.items_count(area_name)
+            print(' \n No. of items in {} = {}'.format(area_name,area_count))
+            confirm = input("\n Area to clear: {}\n Confirm with yes or no: ".format(area_name))
             check = boh_data.if_area_exist(area_name)
             if confirm =="yes" and check == True:
                 placeHolder = 0
@@ -142,13 +146,16 @@ def modify_window(boh_data,state):
             os.system('cls||clear')
             print("\n ---------- X ITEM OUT IN AREA-----------")    
             area_name = input("\n What area?: ")
-            confirm = input("\n Area: {}. Confirm with yes or no: ".format(area_name))
+            confirm = input("\n Area: {}.\n Confirm with yes or no: ".format(area_name))
             check = boh_data.if_area_exist(area_name)
             if confirm == "yes" and check == True:
                 os.system('cls||clear')
-                print("\n ---------- X ITEM OUT IN AREA-----------")    
+                print("\n ---------- X ITEM OUT IN AREA-----------\n")    
                 bar_scan = bar_scan = input(' Scan now: ')
-                confirm_all = input(" Confirm to clear all item with matching barcode with yes or no: ")
+                count = boh_data.items_in(area_name,bar_scan)
+                print('\n {} items with scanned barcode in {}.'.format(count,area_name))
+                print('\n Clear all identical barcode in {}?'.format(area_name))
+                confirm_all = input(" Confirm with yes or no: ")
                 if confirm_all == 'yes':
                     boh_data.edit_area(area_name,bar_scan,"X")
                     print("\n CLEARED all identical barcode in area: {}".format(area_name))
