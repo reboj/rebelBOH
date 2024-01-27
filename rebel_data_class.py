@@ -88,6 +88,12 @@ class rebel_data():
 
 
 
+bohdata = rebel_data()
+bohdata.data['A5-25'] = bohdata.data.get('B3-4')
+bohdata.upload_data()
+print(bohdata.data['B3-4'])
+
+
 
 
 
