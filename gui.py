@@ -59,8 +59,10 @@ def modify_window(boh_data,state):
         input_05 = ' ~ Custom print areas\n'
         input_06 = ' ~ search\n'
         input_07 = ' ~ exit\n\n'
+        input_08 = ' ~ Tranfer\n'
         text_02 = ' Select Action: '
-        scan_var = input(text_01 + input_00 +input_01 + input_02 + input_03 + input_04 + input_05 + input_06 + input_07 + text_02)
+        scan_var = input(text_01 + input_00 +input_01 + input_02 + input_03 + input_04 + input_05 + input_08 + input_06 + input_07 + text_02)
+        
 
         if scan_var == "Add new area":  #ADD NEW AREA FUNCTION
             os.system('cls||clear')
@@ -179,6 +181,22 @@ def modify_window(boh_data,state):
                     if len(custom_print) > 0:
                         custom_print_barcodes(custom_print)
                     break
+        
+        if scan_var == 'Transfer':
+            os.system('cls||clear')
+            print("\n ---------- TRANSFER -----------")
+            print("\n Transfer items from one area to another.")
+            from_area = input("\n FROM what area? ")
+            to_area = input("\n To which area? ")
+            print("\n Transfer items from {} to {}?.".format(from_area,to_area))
+            confirm = input(" Confirm with yes or no: ")
+            if confirm == 'yes':
+                condition = boh_data.change_area(from_area,to_area)
+                if condition == True:
+                    print("\n Transfer completed from {} to {}.".format(from_area,to_area))
+                else:
+                    print("\n Transfer failed. One of the areas does not exist.")
+            
 
         if scan_var == "search":
             state = scan_var

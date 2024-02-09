@@ -86,6 +86,21 @@ class rebel_data():
                 count = count + 1
         return count
 
+    def change_area(self,from_area,to_area):
+        area_list = [from_area,to_area]
+        condition = True
+        for area in area_list:
+            if area in self.data:
+                condition = True
+            else:
+                condition = False
+        
+        if condition == True:
+            self.data[to_area] = self.data.get(from_area)
+            return True 
+        else:
+            return False
+        
 
 
 
