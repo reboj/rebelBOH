@@ -59,9 +59,9 @@ def modify_window(boh_data,state):
         input_05 = ' ~ Custom print areas\n'
         input_06 = ' ~ search\n'
         input_07 = ' ~ exit\n\n'
-        input_08 = ' ~ Tranfer\n'
+        input_08 = ' ~ Transfer\n'
         text_02 = ' Select Action: '
-        scan_var = input(text_01 + input_00 +input_01 + input_02 + input_03 + input_04 + input_05 + input_08 + input_06 + input_07 + text_02)
+        scan_var = input(text_01 + input_00 +input_01 + input_02 + input_03 + input_04 + input_05 + input_06 + input_07 + text_02)
         
 
         if scan_var == "Add new area":  #ADD NEW AREA FUNCTION
