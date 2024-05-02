@@ -133,15 +133,16 @@ def modify_window(boh_data,state):
             os.system('cls||clear')
             print("\n ----------CLEAR AREA-----------")  
             area_name = input("\n What area to clear?:")
-            area_count = boh_data.items_count(area_name)
-            print(' \n No. of items in {} = {}'.format(area_name,area_count))
-            confirm = input("\n Area to clear: {}\n Confirm with yes or no: ".format(area_name))
             check = boh_data.if_area_exist(area_name)
-            if confirm =="yes" and check == True:
-                placeHolder = 0
-                boh_data.edit_area(area_name, placeHolder,"CLEAR")
-                print("\n CLEARED all items in area: {}".format(area_name))
-            if check == False and confirm == 'yes':
+            if check == True:
+                area_count = boh_data.items_count(area_name)
+                print(' \n No. of items in {} = {}'.format(area_name,area_count))
+                confirm = input("\n Area to clear: {}\n Confirm with yes or no: ".format(area_name))
+                if confirm == 'yes':            
+                    placeHolder = 0
+                    boh_data.edit_area(area_name, placeHolder,"CLEAR")
+                    print("\n CLEARED all items in area: {}".format(area_name))
+            if check == False:
                 print("\n No Area exit in database. Double check area.\n")
 
         if scan_var == "X item":
