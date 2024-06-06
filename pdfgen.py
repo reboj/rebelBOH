@@ -4,6 +4,16 @@ from reportlab.lib.pagesizes import letter
 from reportlab.pdfgen import canvas
 import os.path
 import os
+import sys
+import subprocess
+
+def open_file(filename):
+    if sys.platform == "win32":
+        os.startfile(filename)
+    else:
+        opener = "open" if sys.platform == "darwin" else "xdg-open"
+        subprocess.call([opener, filename])
+
 
 def print_barcode(area_name):
     options = {
@@ -25,7 +35,8 @@ def print_barcode(area_name):
     c.drawInlineImage(barcode_filename + '.png', -50, -100)
     c.showPage()
     c.save()
-    os.startfile('barcodes.pdf')
+    #os.startfile('barcodes.pdf')
+    open_file('barcodes.pdf')
     
 def custom_print_barcodes(areas_dict):
     #os.startfile('barcodes.pdf')
@@ -56,7 +67,8 @@ def custom_print_barcodes(areas_dict):
         c.drawInlineImage(barcode_filename + '.png', -50, -100) 
         c.showPage()   
     c.save()
-    os.startfile('barcodes.pdf')
+    #os.startfile('barcodes.pdf')
+    open_file('barcodes.pdf')
 
 
 
